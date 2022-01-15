@@ -68,9 +68,13 @@ main {
   color: #fff;
   grid-column: 1 / -1;
   cursor: pointer;
-  transition: 0.5s;
 }
 
 .form--button:hover {
   background: linear-gradient(90deg, #672280 1.18%, #4f006b 100%);
+}
+
+.meme--img {
+  padding-top: 20px;
+  max-width: 100%;
 }
