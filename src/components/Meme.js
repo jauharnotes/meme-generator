@@ -1,35 +1,38 @@
-import React from "react"
-import memeData from "../memeData"
+import React, { useState, useEffect } from "react"
 
 export default function Meme() {
-    /**
-     * Challenge: 
-     * 1. Set up the text inputs to save to
-     *    the `topText` and `bottomText` state variables.
-     * 2. Replace the hard-coded text on the image with
-     *    the text being saved to state.
-     */
 
-    const [meme, setMeme] = React.useState({
+    const [meme, setMeme] = useState({
         topText: "",
         bottomText: "",
         randomImage: "http://i.imgflip.com/1bij.jpg"
     })
 
     function handleChange(event) {
-        const { name, value, type } = event.target
+        const { name, value } = event.target
         setMeme(prevMeme => ({
             ...prevMeme, [name]: value
         }))
     }
 
-    const [allMemeImages, setAllMemeImages] = React.useState(memeData)
+    const [allMemeImages, setAllMemeImages] = useState([])
+
+    useEffect(() => {
+        async function getMeme() {
+            const res = await fetch('https://api.imgflip.com/get_memes')
+            const data = await res.json()
+            setAllMemeImages(data.data.memes)
+            // fetch('https://api.imgflip.com/get_memes')
+            //     .then(res => res.json())
+            //     .then(data => setAllMemeImages(data.data.memes))
+        }
+        getMeme()
+    }, [])
 
 
     function getMemeImage() {
-        const memesArray = allMemeImages.data.memes
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        const url = memesArray[randomNumber].url
+        const randomNumber = Math.floor(Math.random() * allMemeImages.length)
+        const url = allMemeImages[randomNumber].url
         setMeme(prevMeme => ({
             ...prevMeme,
             randomImage: url

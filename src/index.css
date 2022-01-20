@@ -5,6 +5,16 @@
 body {
   font-family: "Karla", sans-serif;
   margin: 0;
+  background-image: url("../public/bg-meme.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  max-width: 550px;
+  margin: 0 auto;
+  background-color: #fff;
+  height: 990px;
 }
 
 main {

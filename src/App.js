@@ -3,7 +3,7 @@ import Meme from "./components/Meme";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Meme />
     </div>
